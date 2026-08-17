@@ -9,118 +9,170 @@
 <meta property="og:title" content="GSCF — Accounting &amp; Tax Services">
 <meta property="og:description" content="Trusted accounting &amp; tax services in Elermore Vale, Newcastle NSW.">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#102a43; --navy2:#1b3a5c; --gold:#c8a24a; --gold-dark:#a8863a;
-    --bg:#f7f8fa; --white:#fff; --text:#334155; --heading:#102a43; --line:#e6e9ef;
+    --navy:#0b1a2e; --navy2:#102a43; --navy3:#16395f;
+    --gold:#c8a24a; --gold-light:#f0d68e; --gold-deep:#a8863a;
+    --ink:#233047; --text:#45566e; --line:rgba(16,42,67,.1);
+    --bg:#f6f7fb;
+    --grad-gold:linear-gradient(135deg,#f0d68e 0%,#c8a24a 55%,#a8863a 100%);
+    --grad-hero:linear-gradient(150deg,#0a1526 0%,#0e2240 45%,#14325c 78%,#1a3f6e 100%);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:'Segoe UI',-apple-system,Roboto,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.7}
+  body{font-family:'Inter',-apple-system,Roboto,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.75;overflow-x:hidden}
+  h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif}
   .container{max-width:1140px;margin:0 auto;padding:0 24px}
   a{text-decoration:none;color:inherit}
+  img{max-width:100%}
 
-  /* NAV */
-  nav{position:sticky;top:0;z-index:100;background:var(--navy);box-shadow:0 2px 12px rgba(16,42,67,.25)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
-  .logo{color:#fff;font-size:22px;font-weight:800;letter-spacing:1px}
-  .logo span{color:var(--gold)}
-  .nav-links{display:flex;gap:30px;align-items:center}
-  .nav-links a{color:rgba(255,255,255,.85);font-size:14.5px;font-weight:500;transition:color .3s}
-  .nav-links a:hover{color:var(--gold)}
-  .nav-cta{background:var(--gold);color:var(--navy)!important;padding:10px 20px;border-radius:6px;font-weight:700;font-size:14px}
-  .nav-cta:hover{background:var(--gold-dark);color:#fff!important}
+  /* ===== NAV ===== */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(11,26,46,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);transition:all .35s}
+  nav.scrolled{background:rgba(10,22,40,.92);box-shadow:0 10px 34px rgba(4,12,24,.35)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo{color:#fff;font-size:24px;font-weight:800;letter-spacing:1.5px;font-family:'Playfair Display',serif}
+  .logo span{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{color:rgba(255,255,255,.82);font-size:14.5px;font-weight:500;transition:color .3s;position:relative}
+  .nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--grad-gold);border-radius:2px;transition:width .3s}
+  .nav-links a:not(.nav-cta):hover{color:#fff}
+  .nav-links a:not(.nav-cta):hover::after{width:100%}
+  .nav-cta{background:var(--grad-gold);color:var(--navy)!important;padding:11px 22px;border-radius:50px;font-weight:700;font-size:14px;box-shadow:0 6px 20px rgba(200,162,74,.35);transition:all .3s}
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(200,162,74,.5)}
   .menu-btn{display:none;background:none;border:none;color:#fff;font-size:26px;cursor:pointer}
 
-  /* HERO */
-  .hero{background:linear-gradient(135deg,#0d2238 0%,#1b3a5c 60%,#24507a 100%);color:#fff;padding:96px 0 110px;position:relative;overflow:hidden}
-  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:rgba(200,162,74,.12)}
-  .hero h1{font-size:44px;line-height:1.2;font-weight:800;margin-bottom:18px}
-  .hero h1 span{color:var(--gold)}
-  .hero p{font-size:17.5px;max-width:620px;opacity:.92;margin-bottom:32px}
-  .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
-  .btn{display:inline-block;padding:14px 30px;border-radius:6px;font-weight:700;font-size:15px;transition:all .3s}
-  .btn-gold{background:var(--gold);color:var(--navy)}
-  .btn-gold:hover{background:var(--gold-dark);color:#fff;transform:translateY(-2px)}
-  .btn-ghost{border:2px solid rgba(255,255,255,.6);color:#fff}
-  .btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+  /* ===== HERO ===== */
+  .hero{position:relative;background:var(--grad-hero);color:#fff;padding:180px 0 150px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(600px 400px at 85% 10%,rgba(200,162,74,.16),transparent 60%),
+    radial-gradient(700px 500px at 8% 90%,rgba(25,177,223,.12),transparent 60%)}
+  .hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(135deg,transparent 20%,#000 80%);-webkit-mask-image:linear-gradient(135deg,transparent 20%,#000 80%)}
+  .hero-ring{position:absolute;right:-140px;top:-140px;width:480px;height:480px;border-radius:50%;border:1px solid rgba(200,162,74,.28)}
+  .hero-ring::after{content:"";position:absolute;inset:42px;border-radius:50%;border:1px solid rgba(255,255,255,.1)}
+  .hero-inner{position:relative;z-index:2;max-width:780px}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);font-weight:600;margin-bottom:26px;padding:8px 18px;border:1px solid rgba(200,162,74,.35);border-radius:50px;background:rgba(200,162,74,.08)}
+  .hero-eyebrow::before{content:"";width:22px;height:1px;background:var(--grad-gold)}
+  .hero h1{font-size:56px;line-height:1.14;font-weight:800;margin-bottom:24px;letter-spacing:-.5px}
+  .hero h1 .grad{background:linear-gradient(120deg,#f5dd9c,#c8a24a 60%,#e8c97e);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p{font-size:18px;max-width:600px;opacity:.9;margin-bottom:38px;font-weight:400}
+  .hero-btns{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-block;padding:15px 34px;border-radius:50px;font-weight:700;font-size:15px;transition:all .35s;cursor:pointer;border:none}
+  .btn-gold{background:var(--grad-gold);color:var(--navy);box-shadow:0 10px 30px rgba(200,162,74,.4)}
+  .btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(200,162,74,.55)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.04);backdrop-filter:blur(8px)}
+  .btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-3px);border-color:rgba(255,255,255,.75)}
+  .hero-stats{margin-top:64px;display:flex;gap:0;border-top:1px solid rgba(255,255,255,.12);padding-top:34px;max-width:640px}
+  .hero-stat{flex:1}
+  .hero-stat .num{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;background:linear-gradient(120deg,#fff,#f0d68e);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero-stat .lbl{font-size:12.5px;color:rgba(255,255,255,.65);letter-spacing:.5px;margin-top:2px}
 
-  /* SECTION BASE */
-  section{padding:84px 0}
-  .sec-head{text-align:center;max-width:680px;margin:0 auto 52px}
-  .sec-head .kicker{color:var(--gold-dark);font-weight:700;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px}
-  .sec-head h2{font-size:34px;color:var(--heading);font-weight:800}
-  .sec-head p{margin-top:14px;font-size:16px}
+  /* ===== SECTIONS ===== */
+  section{padding:104px 0;position:relative}
+  .sec-head{text-align:center;max-width:660px;margin:0 auto 60px}
+  .kicker{display:inline-flex;align-items:center;gap:10px;color:var(--gold-deep);font-weight:700;font-size:12.5px;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
+  .kicker::before,.kicker::after{content:"";width:26px;height:1.5px;background:var(--grad-gold)}
+  .sec-head h2{font-size:40px;color:var(--navy);font-weight:800;line-height:1.2}
+  .sec-head p{margin-top:16px;font-size:16.5px}
 
-  /* ABOUT */
-  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-  .about-text h2{font-size:32px;color:var(--heading);font-weight:800;margin-bottom:16px}
-  .about-text p{font-size:15.8px;margin-bottom:16px}
-  .about-feats{list-style:none;margin-top:22px}
-  .about-feats li{padding:9px 0 9px 34px;position:relative;font-size:15.5px;font-weight:500;color:var(--navy)}
-  .about-feats li::before{content:"✓";position:absolute;left:0;top:8px;width:24px;height:24px;background:#eef4e8;color:#3e7d32;border-radius:50%;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
-  .about-card{background:var(--navy);color:#fff;border-radius:14px;padding:40px;position:relative}
-  .about-card h3{font-size:20px;margin-bottom:14px;color:var(--gold)}
-  .about-card p{font-size:14.5px;opacity:.9;margin-bottom:18px}
-  .about-card .contact-line{font-size:14.5px;padding:7px 0;border-top:1px solid rgba(255,255,255,.12)}
-  .about-card .contact-line b{color:var(--gold)}
+  /* ===== ABOUT ===== */
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+  .about-text h2{font-size:38px;color:var(--navy);font-weight:800;margin-bottom:20px;line-height:1.25}
+  .about-text h2 .grad{background:linear-gradient(120deg,#c8a24a,#e8c97e);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .about-text p{font-size:16px;margin-bottom:18px}
+  .about-feats{list-style:none;margin-top:26px}
+  .about-feats li{padding:10px 0 10px 40px;position:relative;font-size:15.5px;font-weight:500;color:var(--navy)}
+  .about-feats li::before{content:"✓";position:absolute;left:0;top:10px;width:26px;height:26px;background:linear-gradient(135deg,#f0d68e,#c8a24a);color:var(--navy);border-radius:50%;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(200,162,74,.35)}
+  .about-card{position:relative;background:var(--grad-hero);border-radius:22px;padding:46px 42px;color:#fff;overflow:hidden;box-shadow:0 30px 70px rgba(11,26,46,.35)}
+  .about-card::before{content:"";position:absolute;top:-70px;right:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(200,162,74,.22),transparent 70%)}
+  .about-card h3{font-size:24px;margin-bottom:16px;background:linear-gradient(120deg,#f5dd9c,#c8a24a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .about-card p{font-size:14.5px;opacity:.85;margin-bottom:22px}
+  .contact-line{font-size:14.5px;padding:11px 0;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:12px;align-items:center}
+  .contact-line .ico{font-size:16px}
+  .contact-line b{color:var(--gold-light);font-weight:600}
+  .about-card .btn{margin-top:24px}
 
-  /* SERVICES */
-  .services{background:var(--white)}
-  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-  .svc-card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:30px 26px;transition:all .3s}
-  .svc-card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(16,42,67,.1);border-color:var(--gold)}
-  .svc-icon{width:52px;height:52px;border-radius:10px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
-  .svc-card h3{font-size:17.5px;color:var(--heading);margin-bottom:9px}
+  /* ===== SERVICES ===== */
+  .services{background:linear-gradient(180deg,#fff 0%,#f6f7fb 100%)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .svc-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px 30px;transition:all .4s;overflow:hidden}
+  .svc-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-gold);opacity:0;transition:opacity .4s}
+  .svc-card:hover{transform:translateY(-8px);box-shadow:0 24px 54px rgba(11,26,46,.12);border-color:transparent}
+  .svc-card:hover::before{opacity:1}
+  .svc-icon{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,rgba(200,162,74,.16),rgba(200,162,74,.05));border:1px solid rgba(200,162,74,.3);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;transition:all .4s}
+  .svc-card:hover .svc-icon{background:var(--grad-gold);color:#fff;transform:scale(1.06) rotate(-4deg);box-shadow:0 10px 26px rgba(200,162,74,.4)}
+  .svc-card h3{font-size:19px;color:var(--navy);margin-bottom:10px}
   .svc-card p{font-size:14px;color:#5b6b7f}
 
-  /* WHY */
-  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-  .why-item{background:#fff;border-radius:12px;padding:30px;border-top:3px solid var(--gold);box-shadow:0 4px 16px rgba(16,42,67,.06)}
-  .why-item h3{font-size:17px;color:var(--heading);margin-bottom:10px}
-  .why-item p{font-size:14px}
+  /* ===== WHY ===== */
+  .why{background:var(--grad-hero);color:#fff;overflow:hidden}
+  .why::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 500px at 90% 0%,rgba(200,162,74,.14),transparent 60%),radial-gradient(700px 500px at 5% 100%,rgba(25,177,223,.1),transparent 60%)}
+  .why .sec-head h2{color:#fff}
+  .why .sec-head p{color:rgba(255,255,255,.7)}
+  .why .kicker{color:var(--gold-light)}
+  .why-grid{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .why-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:32px 28px;backdrop-filter:blur(10px);transition:all .4s}
+  .why-item:hover{background:rgba(255,255,255,.09);transform:translateY(-6px);border-color:rgba(200,162,74,.45)}
+  .why-item h3{font-size:18px;color:#fff;margin-bottom:10px}
+  .why-item p{font-size:14px;color:rgba(255,255,255,.72)}
 
-  /* CONTACT */
-  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px}
-  .c-info{background:var(--navy);color:#fff;border-radius:14px;padding:38px}
-  .c-info h3{font-size:22px;margin-bottom:22px;color:var(--gold)}
-  .c-row{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:14.5px}
-  .c-row .ico{font-size:18px}
-  .c-row a:hover{color:var(--gold)}
-  .c-form{background:#fff;border:1px solid var(--line);border-radius:14px;padding:34px}
-  .c-form h3{font-size:20px;color:var(--heading);margin-bottom:18px}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .f-field{margin-bottom:14px}
-  .f-field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px}
-  .f-field input,.f-field textarea,.f-field select{width:100%;padding:12px 14px;border:1px solid #d5dbe4;border-radius:8px;font-size:14.5px;font-family:inherit;background:#fafbfc}
-  .f-field input:focus,.f-field textarea:focus,.f-field select:focus{outline:none;border-color:var(--gold);background:#fff}
+  /* ===== CONTACT ===== */
+  .contact{background:linear-gradient(180deg,#f6f7fb 0%,#fff 100%)}
+  .contact-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:34px}
+  .c-info{position:relative;background:var(--grad-hero);color:#fff;border-radius:22px;padding:44px 38px;overflow:hidden;box-shadow:0 30px 70px rgba(11,26,46,.3)}
+  .c-info::before{content:"";position:absolute;bottom:-80px;left:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(200,162,74,.18),transparent 70%)}
+  .c-info h3{font-size:26px;margin-bottom:26px;background:linear-gradient(120deg,#f5dd9c,#c8a24a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .c-row{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:14.5px;position:relative;z-index:2}
+  .c-row .ico{font-size:18px;width:34px;height:34px;border-radius:10px;background:rgba(200,162,74,.16);border:1px solid rgba(200,162,74,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .c-row a:hover{color:var(--gold-light)}
+  .c-form{background:#fff;border:1px solid var(--line);border-radius:22px;padding:40px 36px;box-shadow:0 20px 50px rgba(11,26,46,.07)}
+  .c-form h3{font-size:24px;color:var(--navy);margin-bottom:22px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .f-field{margin-bottom:16px}
+  .f-field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:7px}
+  .f-field input,.f-field textarea,.f-field select{width:100%;padding:13px 16px;border:1.5px solid #dde3ec;border-radius:12px;font-size:14.5px;font-family:inherit;background:#fafbfd;transition:all .3s}
+  .f-field input:focus,.f-field textarea:focus,.f-field select:focus{outline:none;border-color:var(--gold);background:#fff;box-shadow:0 0 0 4px rgba(200,162,74,.14)}
   .f-field textarea{min-height:110px;resize:vertical}
-  .c-form .btn{width:100%;text-align:center;border:none;cursor:pointer;margin-top:4px}
-  .map-wrap{margin-top:56px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .c-form .btn{width:100%;text-align:center;margin-top:6px}
+  .map-wrap{margin-top:44px;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 20px 50px rgba(11,26,46,.1)}
   .map-wrap iframe{display:block;width:100%;height:380px;border:0}
 
-  /* FOOTER */
-  footer{background:var(--navy);color:rgba(255,255,255,.75);padding:36px 0 30px;text-align:center;font-size:13.5px}
-  footer .logo{margin-bottom:10px;display:block}
-  footer a{color:var(--gold)}
-  footer .foot-links{margin:12px 0;display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
+  /* ===== FOOTER ===== */
+  footer{background:#081322;color:rgba(255,255,255,.7);padding:52px 0 40px;text-align:center;font-size:13.5px;position:relative}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold)}
+  footer .logo{margin-bottom:12px;display:block;font-size:26px}
+  footer .foot-links{margin:16px 0 18px;display:flex;gap:26px;justify-content:center;flex-wrap:wrap}
+  footer a{color:var(--gold-light)}
+  footer a:hover{color:var(--gold-light);text-decoration:underline}
+
+  /* ===== REVEAL ANIMATION ===== */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,.84,.34,1),transform .8s cubic-bezier(.16,.84,.34,1)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
 
   @media(max-width:900px){
-    .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--navy);flex-direction:column;padding:20px;gap:18px;align-items:flex-start}
+    .nav-links{display:none;position:fixed;top:74px;left:0;right:0;background:rgba(10,22,40,.98);backdrop-filter:blur(14px);flex-direction:column;padding:28px 24px;gap:20px;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,.1)}
     .nav-links.open{display:flex}
     .menu-btn{display:block}
-    .hero h1{font-size:32px}
+    .hero{padding:150px 0 110px}
+    .hero h1{font-size:38px}
     .about-grid,.contact-grid{grid-template-columns:1fr}
     .svc-grid,.why-grid{grid-template-columns:1fr 1fr}
+    .hero-stats{flex-wrap:wrap;gap:18px}
+    .hero-stat{flex:1 1 40%}
     .form-row{grid-template-columns:1fr}
+    section{padding:80px 0}
+    .sec-head h2{font-size:32px}
   }
-  @media(max-width:520px){.svc-grid,.why-grid{grid-template-columns:1fr}.hero{padding:70px 0 80px}}
+  @media(max-width:520px){.svc-grid,.why-grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="nav">
   <div class="container nav-inner">
     <div class="logo">GSCF<span>.</span></div>
     <button class="menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
@@ -137,12 +189,22 @@
 
 <!-- HERO -->
 <header class="hero" id="home">
+  <div class="hero-dots"></div>
+  <div class="hero-ring"></div>
   <div class="container">
-    <h1>Your Trusted Accountants<br><span>in Australia</span></h1>
-    <p>GSCF helps individuals and businesses stay on top of their tax, bookkeeping and compliance — so you can focus on running your business with confidence.</p>
-    <div class="hero-btns">
-      <a href="#contact" class="btn btn-gold">Book a Consultation</a>
-      <a href="#services" class="btn btn-ghost">View Our Services</a>
+    <div class="hero-inner">
+      <div class="hero-eyebrow reveal in">Newcastle · Lake Macquarie · NSW</div>
+      <h1 class="reveal in d1">Your Trusted Accountants<br><span class="grad">in Australia</span></h1>
+      <p class="reveal in d2">GSCF helps individuals and businesses stay on top of their tax, bookkeeping and compliance — so you can focus on running your business with confidence.</p>
+      <div class="hero-btns reveal in d3">
+        <a href="#contact" class="btn btn-gold">Book a Consultation</a>
+        <a href="#services" class="btn btn-ghost">View Our Services</a>
+      </div>
+      <div class="hero-stats reveal in d4">
+        <div class="hero-stat"><div class="num">9+</div><div class="lbl">Service Areas</div></div>
+        <div class="hero-stat"><div class="num">100%</div><div class="lbl">Local &amp; Personal</div></div>
+        <div class="hero-stat"><div class="num">1 Day</div><div class="lbl">Response Time</div></div>
+      </div>
     </div>
   </div>
 </header>
@@ -151,11 +213,11 @@
 <section id="about">
   <div class="container about-grid">
     <div class="about-text">
-      <div class="kicker">About GSCF</div>
-      <h2>Local Accounting Expertise,<br>Personal Service</h2>
-      <p>Based in Elermore Vale, Newcastle, GSCF is a dedicated accounting firm committed to helping local individuals and businesses achieve their financial goals. We take the time to understand your situation and provide clear, practical advice — in plain English.</p>
-      <p>From tax returns and BAS to business setup and SMSF, we handle the numbers so you don't have to.</p>
-      <ul class="about-feats">
+      <div class="kicker reveal">About GSCF</div>
+      <h2 class="reveal d1">Local Accounting Expertise,<br><span class="grad">Personal Service</span></h2>
+      <p class="reveal d2">Based in Elermore Vale, Newcastle, GSCF is a dedicated accounting firm committed to helping local individuals and businesses achieve their financial goals. We take the time to understand your situation and provide clear, practical advice — in plain English.</p>
+      <p class="reveal d2">From tax returns and BAS to business setup and SMSF, we handle the numbers so you don't have to.</p>
+      <ul class="about-feats reveal d3">
         <li>Individual &amp; business tax returns</li>
         <li>BAS, GST &amp; payroll compliance</li>
         <li>Business registration, companies &amp; trusts</li>
@@ -163,14 +225,14 @@
         <li>Xero / QuickBooks bookkeeping support</li>
       </ul>
     </div>
-    <div class="about-card">
+    <div class="about-card reveal d2">
       <h3>Speak With Us Today</h3>
       <p>Getting started is easy — call us or send an enquiry and we'll get back to you within one business day.</p>
-      <div class="contact-line"><b>Phone:</b> 0416 930 903</div>
-      <div class="contact-line"><b>Email:</b> Jerry.guan@gscf.com.au</div>
-      <div class="contact-line"><b>Office:</b> 3 Cheviot Close, Elermore Vale NSW 2287</div>
-      <div class="contact-line"><b>Hours:</b> Mon–Fri, 9:00am – 5:00pm</div>
-      <p style="margin-top:20px;margin-bottom:0"><a href="tel:+61416930903" class="btn btn-gold" style="padding:12px 26px">Call Now</a></p>
+      <div class="contact-line"><span class="ico">📍</span><div><b>Office:</b><br>3 Cheviot Close, Elermore Vale NSW 2287</div></div>
+      <div class="contact-line"><span class="ico">📞</span><div><b>Phone:</b><br><a href="tel:+61416930903">0416 930 903</a></div></div>
+      <div class="contact-line"><span class="ico">✉️</span><div><b>Email:</b><br><a href="mailto:Jerry.guan@gscf.com.au">Jerry.guan@gscf.com.au</a></div></div>
+      <div class="contact-line"><span class="ico">🕘</span><div><b>Hours:</b><br>Mon–Fri, 9:00am – 5:00pm</div></div>
+      <a href="tel:+61416930903" class="btn btn-gold">Call Now</a>
     </div>
   </div>
 </section>
@@ -179,59 +241,59 @@
 <section class="services" id="services">
   <div class="container">
     <div class="sec-head">
-      <div class="kicker">Our Services</div>
-      <h2>Everything Your Business Needs</h2>
-      <p>Practical accounting and tax services tailored to individuals and business owners.</p>
+      <div class="kicker reveal">Our Services</div>
+      <h2 class="reveal d1">Everything Your Business Needs</h2>
+      <p class="reveal d2">Practical accounting and tax services tailored to individuals and business owners.</p>
     </div>
     <div class="svc-grid">
-      <div class="svc-card"><div class="svc-icon">🧾</div><h3>Tax Returns</h3><p>Individual and business tax returns prepared accurately and lodged on time, with maximised deductions.</p></div>
-      <div class="svc-card"><div class="svc-icon">📊</div><h3>BAS &amp; GST</h3><p>Quarterly BAS, GST and IAS lodgement — accurate, stress-free and on schedule.</p></div>
-      <div class="svc-card"><div class="svc-icon">📒</div><h3>Bookkeeping</h3><p>Xero and QuickBooks setup, data entry and monthly bookkeeping so your records are always clean.</p></div>
-      <div class="svc-card"><div class="svc-icon">🏢</div><h3>Business Setup</h3><p>Company, trust and sole trader registration — ABN, ACN, TFN and structure advice.</p></div>
-      <div class="svc-card"><div class="svc-icon">👥</div><h3>Payroll</h3><p>Payroll processing, superannuation and Single Touch Payroll compliance for your team.</p></div>
-      <div class="svc-card"><div class="svc-icon">💼</div><h3>SMSF</h3><p>Self-managed super fund setup, administration and annual returns.</p></div>
-      <div class="svc-card"><div class="svc-icon">📈</div><h3>Business Advisory</h3><p>Cash flow planning, budgeting and profitability advice to help your business grow.</p></div>
-      <div class="svc-card"><div class="svc-icon">🏠</div><h3>Property &amp; Capital Gains</h3><p>Investment property tax, negative gearing and capital gains tax planning.</p></div>
-      <div class="svc-card"><div class="svc-icon">🛡️</div><h3>Tax Planning</h3><p>Year-round planning to legally minimise tax and avoid surprises at tax time.</p></div>
+      <div class="svc-card reveal d1"><div class="svc-icon">🧾</div><h3>Tax Returns</h3><p>Individual and business tax returns prepared accurately and lodged on time, with maximised deductions.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-icon">📊</div><h3>BAS &amp; GST</h3><p>Quarterly BAS, GST and IAS lodgement — accurate, stress-free and on schedule.</p></div>
+      <div class="svc-card reveal d3"><div class="svc-icon">📒</div><h3>Bookkeeping</h3><p>Xero and QuickBooks setup, data entry and monthly bookkeeping so your records are always clean.</p></div>
+      <div class="svc-card reveal d1"><div class="svc-icon">🏢</div><h3>Business Setup</h3><p>Company, trust and sole trader registration — ABN, ACN, TFN and structure advice.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-icon">👥</div><h3>Payroll</h3><p>Payroll processing, superannuation and Single Touch Payroll compliance for your team.</p></div>
+      <div class="svc-card reveal d3"><div class="svc-icon">💼</div><h3>SMSF</h3><p>Self-managed super fund setup, administration and annual returns.</p></div>
+      <div class="svc-card reveal d1"><div class="svc-icon">📈</div><h3>Business Advisory</h3><p>Cash flow planning, budgeting and profitability advice to help your business grow.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-icon">🏠</div><h3>Property &amp; Capital Gains</h3><p>Investment property tax, negative gearing and capital gains tax planning.</p></div>
+      <div class="svc-card reveal d3"><div class="svc-icon">🛡️</div><h3>Tax Planning</h3><p>Year-round planning to legally minimise tax and avoid surprises at tax time.</p></div>
     </div>
   </div>
 </section>
 
 <!-- WHY US -->
-<section id="why">
+<section class="why" id="why">
   <div class="container">
     <div class="sec-head">
-      <div class="kicker">Why Choose GSCF</div>
-      <h2>Accountants Who Care About Your Numbers</h2>
+      <div class="kicker reveal">Why Choose GSCF</div>
+      <h2 class="reveal d1">Accountants Who Care About Your Numbers</h2>
     </div>
     <div class="why-grid">
-      <div class="why-item"><h3>🤝 Personal Service</h3><p>You deal directly with your accountant — no call centres, no runaround.</p></div>
-      <div class="why-item"><h3>💰 Maximise Your Returns</h3><p>We actively find deductions and structure your affairs tax-effectively.</p></div>
-      <div class="why-item"><h3>⚡ Fast Turnaround</h3><p>Quick lodgement and responses — we respect your time.</p></div>
-      <div class="why-item"><h3>📱 Modern &amp; Paperless</h3><p>Digital lodgements, cloud accounting and easy document sharing.</p></div>
-      <div class="why-item"><h3>📅 Year-Round Support</h3><p>Not just at tax time — we're here whenever you need advice.</p></div>
-      <div class="why-item"><h3>🏘️ Local &amp; Accessible</h3><p>Based in Elermore Vale, proud to serve Newcastle and Lake Macquarie.</p></div>
+      <div class="why-item reveal d1"><h3>🤝 Personal Service</h3><p>You deal directly with your accountant — no call centres, no runaround.</p></div>
+      <div class="why-item reveal d2"><h3>💰 Maximise Your Returns</h3><p>We actively find deductions and structure your affairs tax-effectively.</p></div>
+      <div class="why-item reveal d3"><h3>⚡ Fast Turnaround</h3><p>Quick lodgement and responses — we respect your time.</p></div>
+      <div class="why-item reveal d1"><h3>📱 Modern &amp; Paperless</h3><p>Digital lodgements, cloud accounting and easy document sharing.</p></div>
+      <div class="why-item reveal d2"><h3>📅 Year-Round Support</h3><p>Not just at tax time — we're here whenever you need advice.</p></div>
+      <div class="why-item reveal d3"><h3>🏘️ Local &amp; Accessible</h3><p>Based in Elermore Vale, proud to serve Newcastle and Lake Macquarie.</p></div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="services" id="contact">
+<section class="contact" id="contact">
   <div class="container">
     <div class="sec-head">
-      <div class="kicker">Contact Us</div>
-      <h2>Get In Touch</h2>
-      <p>Call us, email us, or send an enquiry — we'll get back to you within one business day.</p>
+      <div class="kicker reveal">Contact Us</div>
+      <h2 class="reveal d1">Get In Touch</h2>
+      <p class="reveal d2">Call us, email us, or send an enquiry — we'll get back to you within one business day.</p>
     </div>
     <div class="contact-grid">
-      <div class="c-info">
+      <div class="c-info reveal d1">
         <h3>Contact Details</h3>
         <div class="c-row"><span class="ico">📍</span><div><b>Office:</b><br>3 Cheviot Close, Elermore Vale NSW 2287</div></div>
         <div class="c-row"><span class="ico">📞</span><div><b>Phone:</b><br><a href="tel:+61416930903">0416 930 903</a></div></div>
         <div class="c-row"><span class="ico">✉️</span><div><b>Email:</b><br><a href="mailto:Jerry.guan@gscf.com.au">Jerry.guan@gscf.com.au</a></div></div>
         <div class="c-row"><span class="ico">🕘</span><div><b>Hours:</b><br>Mon–Fri, 9:00am – 5:00pm</div></div>
       </div>
-      <div class="c-form">
+      <div class="c-form reveal d2">
         <h3>Send an Enquiry</h3>
         <form onsubmit="sendEnquiry(event)">
           <div class="form-row">
@@ -248,11 +310,11 @@
           </div>
           <div class="f-field"><label>Message *</label><textarea id="q-msg" required placeholder="Tell us a little about your situation..."></textarea></div>
           <button type="submit" class="btn btn-gold">Send Enquiry</button>
-          <p id="form-note" style="font-size:13px;color:#5b6b7f;margin-top:12px;text-align:center"></p>
+          <p id="form-note" style="font-size:13px;color:#5b6b7f;margin-top:14px;text-align:center"></p>
         </form>
       </div>
     </div>
-    <div class="map-wrap">
+    <div class="map-wrap reveal d2">
       <iframe src="https://www.google.com/maps?q=3+Cheviot+Close,+Elermore+Vale+NSW+2287&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="GSCF office location map"></iframe>
     </div>
   </div>
@@ -267,11 +329,25 @@
       <a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a>
     </div>
     <p>📞 <a href="tel:+61416930903">0416 930 903</a> &nbsp;·&nbsp; ✉️ <a href="mailto:Jerry.guan@gscf.com.au">Jerry.guan@gscf.com.au</a> &nbsp;·&nbsp; 📍 3 Cheviot Close, Elermore Vale NSW 2287</p>
-    <p style="margin-top:12px;opacity:.7">© 2026 GSCF. All rights reserved.</p>
+    <p style="margin-top:14px;opacity:.6">© 2026 GSCF. All rights reserved.</p>
   </div>
 </footer>
 
 <script>
+  // sticky nav style
+  window.addEventListener('scroll', function(){
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // contact form -> mailto
   function sendEnquiry(e){
     e.preventDefault();
     var n=document.getElementById('q-name').value.trim(),
