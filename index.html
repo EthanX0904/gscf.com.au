@@ -85,14 +85,11 @@
   .about-feats{list-style:none;margin-top:26px}
   .about-feats li{padding:10px 0 10px 40px;position:relative;font-size:15.5px;font-weight:500;color:var(--navy)}
   .about-feats li::before{content:"✓";position:absolute;left:0;top:10px;width:26px;height:26px;background:linear-gradient(135deg,#f0d68e,#c8a24a);color:var(--navy);border-radius:50%;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(200,162,74,.35)}
-  .about-card{position:relative;background:var(--grad-hero);border-radius:22px;padding:46px 42px;color:#fff;overflow:hidden;box-shadow:0 30px 70px rgba(11,26,46,.35)}
-  .about-card::before{content:"";position:absolute;top:-70px;right:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(200,162,74,.22),transparent 70%)}
-  .about-card h3{font-size:24px;margin-bottom:16px;background:linear-gradient(120deg,#f5dd9c,#c8a24a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .about-card p{font-size:14.5px;opacity:.85;margin-bottom:22px}
-  .contact-line{font-size:14.5px;padding:11px 0;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:12px;align-items:center}
-  .contact-line .ico{font-size:16px}
-  .contact-line b{color:var(--gold-light);font-weight:600}
-  .about-card .btn{margin-top:24px}
+  .about-img{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(11,26,46,.28);border:1px solid rgba(200,162,74,.4)}
+  .about-img img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3.1}
+  .about-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(11,26,46,.6))}
+  .about-img-badge{position:absolute;left:22px;bottom:22px;z-index:2;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);color:var(--navy);font-weight:600;font-size:13.5px;padding:11px 20px;border-radius:50px;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+  .about-img-badge .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#4caf50,#2e7d32);flex-shrink:0}
 
   /* ===== SERVICES ===== */
   .services{background:linear-gradient(180deg,#fff 0%,#f6f7fb 100%)}
@@ -225,14 +222,9 @@
         <li>Xero / QuickBooks bookkeeping support</li>
       </ul>
     </div>
-    <div class="about-card reveal d2">
-      <h3>Speak With Us Today</h3>
-      <p>Getting started is easy — call us or send an enquiry and we'll get back to you within one business day.</p>
-      <div class="contact-line"><span class="ico">📍</span><div><b>Office:</b><br>3 Cheviot Close, Elermore Vale NSW 2287</div></div>
-      <div class="contact-line"><span class="ico">📞</span><div><b>Phone:</b><br><a href="tel:+61416930903">0416 930 903</a></div></div>
-      <div class="contact-line"><span class="ico">✉️</span><div><b>Email:</b><br><a href="mailto:Jerry.guan@gscf.com.au">Jerry.guan@gscf.com.au</a></div></div>
-      <div class="contact-line"><span class="ico">🕘</span><div><b>Hours:</b><br>Mon–Fri, 9:00am – 5:00pm</div></div>
-      <a href="tel:+61416930903" class="btn btn-gold">Call Now</a>
+    <div class="about-img reveal d2">
+      <img src="about.jpg" alt="GSCF accounting and tax services office" loading="lazy">
+      <div class="about-img-badge"><span class="dot"></span> Elermore Vale · Newcastle NSW</div>
     </div>
   </div>
 </section>
